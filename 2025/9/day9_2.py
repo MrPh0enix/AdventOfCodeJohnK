@@ -1,6 +1,6 @@
 
 
-with open('day9.txt', 'r') as file:
+with open('test.txt', 'r') as file:
     input = file.read()
     input = input.split('\n')
 
@@ -50,35 +50,37 @@ for i in input:
 
 def check_corners(x1, y1, x2, y2):
     corners_found = 0
-    if (x2 >= x1) and (y2 >= y1):
-        for point in points:
-            if (point[0] <= x1) and (point[1] >= y2):
-                corners_found += 1
-            if (point[0] >= x2) and (point[1] <= y1):
-                corners_found += 1
-    
-    elif (x2 <= x1) and (y2 >= y1):
-        for point in points:
-            if (point[0] <= x2) and (point[1] <= y1):
-                corners_found += 1
-            if (point[0] >= x1) and (point[1] >= y2):
-                corners_found += 1
-    
-    elif (x2 <= x1) and (y2 <= y1):
-        for point in points:
-            if (point[0] <= x2) and (point[1] >= y1):
-                corners_found += 1
-            if (point[0] >= x1) and (point[1] <= y2):
-                corners_found += 1
-    
-    elif (x2 >= x1) and (y2 <= y1):
-        for point in points:
-            if (point[0] <= x1) and (point[1] <= y2):
-                corners_found += 1
-            if (point[0] >= x2) and (point[1] >= y1):
-                corners_found += 1
-    
-    if corners_found == 2:
+    for point in points:
+        if (x2 > x1) and (y2 > y1):
+            
+                if (point[0] <= x1) and (point[1] >= y2):
+                    corners_found += 1
+                if (point[0] >= x2) and (point[1] <= y1):
+                    corners_found += 1
+        
+        elif (x2 < x1) and (y2 > y1):
+            
+                if (point[0] <= x2) and (point[1] <= y1):
+                    corners_found += 1
+                if (point[0] >= x1) and (point[1] >= y2):
+                    corners_found += 1
+        
+        elif (x2 < x1) and (y2 < y1):
+            
+                if (point[0] <= x2) and (point[1] >= y1):
+                    corners_found += 1
+                if (point[0] >= x1) and (point[1] <= y2):
+                    corners_found += 1
+        
+        elif (x2 > x1) and (y2 < y1):
+            
+                if (point[0] <= x1) and (point[1] <= y2):
+                    corners_found += 1
+                if (point[0] >= x2) and (point[1] >= y1):
+                    corners_found += 1
+                    
+    print(corners_found)
+    if corners_found >= 2:
         return True
     else:
         return False
